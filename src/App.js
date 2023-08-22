@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Product from "./Pages/Product";
+import Cart from "./Pages/Cart";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <ThemeProvider theme={theme}>
+    <BrowserRouter>
+    <Routes>
+    <Route exact path='/' element={<Home/>}/>
+    <Route exact path='/login' element={<Login/>}/>
+    <Route exact path='/register' element={<Register/>}/>
+    <Route exact path='/product' element={<Product/>}/>
+    <Route exact path='/cart' element={<Cart/>}/>
+    </Routes>
+    </BrowserRouter>
+    </ThemeProvider>
+    </>
   );
 }
 
